@@ -4,7 +4,7 @@ export function Home() {
   return (
     <div className="w-full h-screen bg-gray-500 px-2">
       <div className="flex flex-col items-center w-full max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-5xl text-black font-poppins font-semibold mt-20 mb-24">CLientes</h2>
+        <h2 className="text-3xl md:text-5xl text-black font-poppins font-semibold mt-20 mb-24">Lista de CLientes</h2>
 
         <div className='flex w-full items-center justify-center md:justify-end  mb-8'>
           <input className='px-2 py-2 rounded w-72 outline-none' type="text" placeholder='Procurar...' />

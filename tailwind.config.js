@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        'new-yellow': '#f1cd30'
+      },
       fontFamily: {
         'dm-sans': 'DM Sans',
         'poppins': 'Poppins'
