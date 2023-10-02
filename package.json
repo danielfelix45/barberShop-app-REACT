@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@ionic/react": "^7.4.1",
+    "firebase": "^10.4.0",
     "ionicons": "^7.1.2",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",

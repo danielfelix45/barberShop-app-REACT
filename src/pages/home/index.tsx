@@ -1,6 +1,6 @@
 import {FiSearch} from 'react-icons/fi'
 
-export function Home() {
+function Home() {
   return (
     <div className="w-full bg-gray-500 px-2 pt-28">
       <div className="flex flex-col items-center h-screen w-full max-w-6xl mx-auto">
@@ -42,3 +42,5 @@ export function Home() {
     </div>
   )
 }
+
+export default Home;

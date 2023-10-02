@@ -1,14 +1,15 @@
 import { FiSearch } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
-export function Clients(){
+function Clients(){
   return(
-    <div className="w-full bg-gray-500 px-2 pt-28">
+    <div className="w-full bg-gray-500 px-2 pt-24 md:pt-28">
       <div className="flex flex-col items-center h-screen w-full max-w-6xl mx-auto">
-        <div className="w-full justify-start mt-14">
-          <a className="bg-new-yellow rounded-md font-poppins font-medium text-xl py-4 px-3" href="">Cadastrar novo cliente</a>
+        <div className="w-full justify-start md:mt-14">
+          <Link className="bg-new-yellow rounded-md font-poppins font-medium text-base md:text-xl py-3 md:py-4 px-3" to={'/clients/new'}>Cadastrar novo cliente</Link>
         </div>
 
-        <h2 className="text-3xl md:text-5xl text-black font-poppins font-semibold mt-20 mb-24">Lista de CLientes</h2>
+        <h2 className="text-3xl md:text-5xl text-black font-poppins font-semibold mt-20 md:mt-20 mb-20 md:mb-24">Lista de CLientes</h2>
 
         <div className='flex w-full items-center justify-center md:justify-end  mb-8'>
           <input className='px-2 py-2 rounded w-72 outline-none' type="text" placeholder='Procurar...' />
@@ -21,32 +22,32 @@ export function Clients(){
           <table className="w-full leading-normal">
             <thead>
               <tr>
-                <th className="px-4 py-2 border-b-2 border-gray-200 bg-gray-100 font-poppins font-semibold text-base md:text-lg text-left uppercase tracking-wider">ID</th>
-                <th className="px-4 py-2 border-b-2 border-gray-200 bg-gray-100 font-poppins font-semibold text-base md:text-lg text-left uppercase tracking-wider">Nome</th>
-                <th className="px-4 py-2 border-b-2 border-gray-200 bg-gray-100 font-poppins font-semibold text-base md:text-lg text-left uppercase tracking-wider">E-mail</th>
-                <th className="px-4 py-2 border-b-2 border-gray-200 bg-gray-100 font-poppins font-semibold text-base md:text-lg text-left uppercase tracking-wider">Telefone</th>
-                <th className="px-4 py-2 border-b-2 border-gray-200 bg-gray-100 font-poppins font-semibold text-base md:text-lg uppercase tracking-wider">Açoes</th>
+                <th className="px-2 md:px-4 py-2 border-b-2 border-gray-200 bg-gray-100 font-poppins font-semibold text-xs md:text-lg text-left uppercase tracking-wider">ID</th>
+                <th className="px-2 md:px-4 py-2 border-b-2 border-gray-200 bg-gray-100 font-poppins font-semibold text-xs md:text-lg text-left uppercase tracking-wider">Nome</th>
+                <th className="px-2 md:px-4 py-2 border-b-2 border-gray-200 bg-gray-100 font-poppins font-semibold text-xs md:text-lg text-left uppercase tracking-wider">E-mail</th>
+                <th className="px-2 md:px-4 py-2 border-b-2 border-gray-200 bg-gray-100 font-poppins font-semibold text-xs md:text-lg text-left uppercase tracking-wider">Telefone</th>
+                <th className="px-3 md:px-4 py-2 border-b-2 border-gray-200 bg-gray-100 font-poppins font-semibold text-xs md:text-lg text-left uppercase tracking-wider">Açoes</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td className="py-4 px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">1</td>
-                <td className="py-4 px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">Daniel Felix</td>
-                <td className="py-4 px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">felix@gmail.com</td>
-                <td className="py-4 px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">48 99837-1504</td>
-                <td className="flex justify-center gap-5 py-4 px-4 border-b border-gray-200 bg-white">
-                  <a className="font-dm-sans font-semibold text-lg text-blue-700" href="#">Atualizar</a>
-                  <a className="font-dm-sans font-semibold text-lg text-red-700" href="#">Deletar</a>
+                <td className="py-4 px-2 md:px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">1</td>
+                <td className="py-4 px-2 md:px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">Daniel Felix</td>
+                <td className="py-4 px-2 md:px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">felix@gmail.com</td>
+                <td className="py-4 px-2 md:px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">48 99837-1504</td>
+                <td className="flex flex-col justify-center gap-5 py-4 px-4 border-b border-gray-200 bg-white">
+                  <Link className="font-dm-sans font-semibold text-xs md:text-lg text-blue-700" to="/update/:id">Atualizar</Link>
+                  <Link className="font-dm-sans font-semibold text-xs md:text-lg text-red-700" to="#">Deletar</Link>
                 </td>
               </tr>
               <tr>
-                <td className="py-4 px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">2</td>
-                <td className="py-4 px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">Maria</td>
-                <td className="py-4 px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">maria@email.com</td>
-                <td className="py-4 px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">48 99585-5623</td>
-                <td className="flex justify-center gap-5 py-4 px-4 border-b border-gray-200 bg-white">
-                  <a className="font-dm-sans font-semibold text-lg text-blue-700" href="#">Atualizar</a>
-                  <a className="font-dm-sans font-semibold text-lg text-red-700" href="#">Deletar</a>
+                <td className="py-4 px-2 md:px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">2</td>
+                <td className="py-4 px-2 md:px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">Maria</td>
+                <td className="py-4 px-2 md:px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">maria@email.com</td>
+                <td className="py-4 px-2 md:px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">48 99585-5623</td>
+                <td className="flex flex-col justify-center gap-5 py-4 px-4 border-b border-gray-200 bg-white">
+                  <Link className="font-dm-sans font-semibold text-xs md:text-lg text-blue-700" to="/update/:id">Atualizar</Link>
+                  <Link className="font-dm-sans font-semibold text-xs md:text-lg text-red-700" to="#">Deletar</Link>
                 </td>
               </tr>
 
@@ -58,3 +59,5 @@ export function Clients(){
     </div>
   )
 }
+
+export default Clients;

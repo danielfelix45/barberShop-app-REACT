@@ -1,10 +1,9 @@
 
-
-function New(){
+function Update(){
   return(
     <div className="w-full bg-gray-500 px-2 md:pt-28">
       <div className="flex flex-col items-center w-full max-w-6xl mx-auto h-screen">
-        <h2 className="mt-24 md:mt-28 mb-16 md:mb-20 font-poppins font-semibold text-2xl md:text-3xl">Cadastrar Novo Cliente</h2>
+        <h2 className="mt-24 md:mt-28 mb-16 md:mb-20 font-poppins font-semibold text-2xl md:text-3xl">Atualizar Cliente</h2>
         <form className="flex flex-col w-full max-w-xl gap-10">
           <input 
             className="py-3 px-2 rounded outline-none"
@@ -21,7 +20,7 @@ function New(){
             type="tel"
             placeholder="Digite o telefone do cliente..." 
           />
-          <button className="bg-new-yellow py-3 px-2 rounded font-poppins font-bold text-xl text-gray-500">Cadastrar</button>
+          <button className="bg-new-yellow py-3 px-2 rounded font-poppins font-bold text-xl text-gray-500">Atualizar</button>
         </form>
       </div>
 
@@ -29,4 +28,4 @@ function New(){
   )
 }
 
-export default New;
+export default Update;
