@@ -8,6 +8,8 @@ import Clients from "./pages/clients";
 import New from "./pages/clients/new";
 import Update from "./pages/clients/update";
 
+import { Private } from "./routes/Private";
+
 const router = createBrowserRouter([
   {
     element: <Layout/>,
@@ -18,11 +20,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/clients',
-        element: <Clients/>
+        element: <Private><Clients/></Private>
       },
       {
         path: '/clients/new',
-        element: <New/>
+        element: <Private><New/></Private>
       },
       {
         path: '/update/:id',
