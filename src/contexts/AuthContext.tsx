@@ -9,6 +9,7 @@ interface IAuthProviderProps {
 type AuthContextData = {
   signed: boolean;
   loadingAuth: boolean;
+  user: IUserProps | null;
 }
 
 interface IUserProps {
@@ -52,6 +53,7 @@ function AuthProvider({ children }: IAuthProviderProps){
       value={{
         signed: !!user,
         loadingAuth,
+        user,
       }}>
       {children}
     </AuthContext.Provider>

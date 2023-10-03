@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/update/:id',
-        element: <Update/>
+        element: <Private><Update/></Private>
       }
     ]
   },
