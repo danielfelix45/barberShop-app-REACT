@@ -5,9 +5,9 @@ function Clients(){
   return(
     <div className="w-full bg-gray-500 px-2 pt-24 md:pt-28">
       <div className="flex flex-col items-center h-screen w-full max-w-6xl mx-auto">
-        <div className="w-full justify-start md:mt-14">
+        {/* <div className="w-full justify-start md:mt-14">
           <Link className="bg-new-yellow rounded-md font-poppins font-medium text-base md:text-xl py-3 md:py-4 px-3" to={'/clients/new'}>Cadastrar novo cliente</Link>
-        </div>
+        </div> */}
 
         <h2 className="text-3xl md:text-5xl text-black font-poppins font-semibold mt-20 md:mt-20 mb-20 md:mb-24">Lista de CLientes</h2>
 

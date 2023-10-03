@@ -2,7 +2,7 @@
 function Update(){
   return(
     <div className="w-full bg-gray-500 px-2 md:pt-28">
-      <div className="flex flex-col items-center w-full max-w-6xl mx-auto h-screen">
+      <div className="flex flex-col items-center md:items-start w-full max-w-6xl mx-auto h-screen">
         <h2 className="mt-24 md:mt-28 mb-16 md:mb-20 font-poppins font-semibold text-2xl md:text-3xl">Atualizar Cliente</h2>
         <form className="flex flex-col w-full max-w-xl gap-10">
           <input 

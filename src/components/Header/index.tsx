@@ -1,11 +1,17 @@
 import {useContext} from 'react';
 import { AuthContext } from "../../contexts/AuthContext";
+import { signOut } from 'firebase/auth';
+import { auth } from '../../services/firebaseConnection';
 
 import { Link } from "react-router-dom";
-import {FiLogIn, FiUser} from 'react-icons/fi';
+import {FiLogIn, FiLogOut} from 'react-icons/fi';
 
 export function Header(){
-  const {signed, loadingAuth} = useContext(AuthContext)
+  const {signed, loadingAuth} = useContext(AuthContext);
+
+  async function handleLogout(){
+    await signOut(auth);
+  }
 
   return(
     <div className="flex fixed justify-center w-full bg-black md:h-28">
@@ -17,9 +23,15 @@ export function Header(){
         
 
         {!loadingAuth && signed && (
-          <Link className='flex items-center' to={'/clients'}>
-              <FiUser size={28} color="#fff"/>
-          </Link>
+          <div className='flex items-center gap-20'>
+            <Link className='text-white text-xl font-dm-sans font-semibold tracking-wide' to={'/clients'}>Lista de Clientes</Link>
+            <Link className='text-white text-xl font-dm-sans font-semibold tracking-wide' to={'/clients/new'}>Cadastrar Cliente</Link>
+
+            <Link to={'/'} onClick={handleLogout}>
+              <FiLogOut size={28} color='#fff' />
+            </Link>
+          </div>
+          
         )}
 
         {!loadingAuth && !signed && (
@@ -27,6 +39,7 @@ export function Header(){
             <FiLogIn size={28} color='#fff'/>
           </Link>
         )}
+        
       </header>
     </div>
   )
