@@ -1,6 +1,47 @@
+import {useState, useEffect} from 'react';
 import {FiSearch} from 'react-icons/fi'
 
+import {collection, query, getDocs, orderBy} from 'firebase/firestore';
+import { db } from '../../services/firebaseConnection';
+
+interface IClientsProps {
+  id: string | number;
+  name: string | null;
+  email: string | null;
+  phone: string | number;
+  uid: string | number;
+}
+
 function Home() {
+  const [clients, setClients] = useState<IClientsProps[]>([]);
+
+  useEffect(() => {
+
+    function loadClients(){
+      const clientsRef = collection(db, 'clients')
+      const queryRef = query(clientsRef, orderBy('created', 'desc'))
+
+      getDocs(queryRef)
+      .then((snapshot) => {
+        let clientsList = [] as IClientsProps[];
+
+        snapshot.forEach( doc => {
+          clientsList.push({
+            id: doc.id,
+            name: doc.data().name,
+            email: doc.data().email,
+            phone: doc.data().phone,
+            uid: doc.data().uid
+          })
+        })
+
+        setClients(clientsList);
+      })
+    }
+
+    loadClients();
+  }, [])
+
   return (
     <div className="w-full bg-gray-500 px-2 pt-28">
       <div className="flex flex-col items-center h-screen w-full max-w-6xl mx-auto">
@@ -23,17 +64,13 @@ function Home() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="py-4 px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">Daniel Felix</td>
-                <td className="py-4 px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">felix@gmail.com</td>
-                <td className="py-4 px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">48 99837-1504</td>
-              </tr>
-              <tr>
-                <td className="py-4 px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">Maria</td>
-                <td className="py-4 px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">maria@email.com</td>
-                <td className="py-4 px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">48 99585-5623</td>
-              </tr>
-
+              {clients.map( client => (
+                <tr key={client.id}>
+                <td className="py-4 px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">{client.name}</td>
+                <td className="py-4 px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">{client.email}</td>
+                <td className="py-4 px-4 border-b border-gray-200 bg-white font-dm-sans text-xs md:text-base">{client.phone}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

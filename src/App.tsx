@@ -6,7 +6,6 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import Clients from "./pages/clients";
 import New from "./pages/clients/new";
-import Update from "./pages/clients/update";
 
 import { Private } from "./routes/Private";
 
@@ -27,8 +26,8 @@ const router = createBrowserRouter([
         element: <Private><New/></Private>
       },
       {
-        path: '/update/:id',
-        element: <Private><Update/></Private>
+        path: '/clients/new/:id',
+        element: <Private><New/></Private>
       }
     ]
   },
