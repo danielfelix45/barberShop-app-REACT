@@ -1,15 +1,29 @@
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
+import {useForm} from 'react-hook-form';
+import { zodResolver } from "@hookform/resolvers/zod";
+import {z} from 'zod';
 
 import { auth } from "../../services/firebaseConnection";
 import { createUserWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { AuthContext } from "../../contexts/AuthContext";
+
+const schema = z.object({
+  name: z.string().min(1, {message: 'O campo nome é obrigatório'}). max(50, 'Nome muito extenso'),
+  email: z.string({required_error: 'O campo email é obrigatório'}).email('Insira um email válido').toLowerCase(),
+  password: z.string({required_error: 'O campo senha é obrigatório'}).min(6, 'A senha precisa de no mínimo 6 caracteres')
+})
+
+type FormData = z.infer<typeof schema>;
 
 function Register() {
   const navigate = useNavigate();
-
-  const [name, setName] = useState('');
-  const [email, SetEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { handleInfoUser } = useContext(AuthContext);
+  const {register, handleSubmit, formState: {errors}} = useForm<FormData>({
+    resolver: zodResolver(schema),
+    mode: 'onChange'
+  })
 
   useEffect(() => {
     async function handleLogout(){
@@ -19,12 +33,17 @@ function Register() {
     handleLogout();
   }, [])
 
-  async function handleRegister(e: FormEvent){
-    e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password)
+  async function handleRegister(data: FormData){
+    createUserWithEmailAndPassword(auth, data.email, data.password)
     .then(async (user) => {
       await updateProfile(user.user, {
-        displayName: name
+        displayName: data.name
+      })
+
+      handleInfoUser({
+        name: data.name,
+        email: data.email,
+        uid: user.user.uid
       })
 
       console.log("CADASTRADO COM SUCESSO!");
@@ -39,38 +58,38 @@ function Register() {
   return (
     <div className="flex flex-col items-center w-full h-screen bg-black px-2">
 
-      <div className="flex items-center text-white text-4xl md:text-6xl font-bold font-poppins mt-12 md:mt-20">
+      <div className="flex items-center text-white text-4xl md:text-6xl font-bold font-poppins mt-12 md:mt-16">
         <Link to={'/'}>Barber<span className="text-new-yellow">Shop</span>.</Link>
       </div>
 
-      <div className="flex flex-col items-center justify-center w-full max-w-xl md:max-w-3xl mx-auto bg-gray-500 mt-14 md:mt-28 py-5 md:py-12 rounded">
+      <div className="flex flex-col items-center justify-center w-full max-w-xl md:max-w-3xl mx-auto bg-gray-500 mt-14 md:mt-24 py-5 md:py-12 rounded">
         <h2 className="font-poppins font-semibold text-2xl md:text-3xl mb-5">Cadastro</h2>
-        <form className="flex flex-col justify-center w-full md:max-w-xl px-2 gap-7 md:gap-10" onSubmit={handleRegister}>
+        <form className="flex flex-col justify-center w-full md:max-w-xl px-2" onSubmit={handleSubmit(handleRegister)}>
           <input 
             className="py-2 md:py-3 px-2 rounded outline-none"
             type="text"
             placeholder="Digite seu nome..." 
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            {...register('name')}
           />
+          {errors.name && <span className="m-1 text-red-600 text-base">{errors.name.message}</span>}
           <input 
-            className="py-2 md:py-3 px-2 rounded outline-none"
+            className="py-2 md:py-3 px-2 rounded outline-none mt-7 md:mt-10"
             type="email"
             placeholder="Digite seu e-mail..." 
-            value={email}
-            onChange={(e) => SetEmail(e.target.value)}
+            {...register('email')}
           />
+          {errors.email && <span className="m-1 text-red-600 text-base">{errors.email.message}</span>}
           <input 
-            className="py-2 md:py-3 px-2 rounded outline-none"
+            className="py-2 md:py-3 px-2 rounded outline-none mt-7 md:mt-10"
             type="password"
-            placeholder="Digite sua senha..." 
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Digite uma senha..." 
+            {...register('password')}
           />
-          <button className="bg-new-yellow py-2 md:py-3 px-2 rounded font-poppins font-bold text-base md:text-xl text-gray-500" type="submit">Cadastrar</button>
+          {errors.password && <span className="m-1 text-red-600 text-base">{errors.password.message}</span>}
+          <button className="bg-new-yellow mt-7 md:mt-10 py-2 md:py-3 px-2 rounded font-poppins font-bold text-base md:text-xl text-gray-500" type="submit">Cadastrar</button>
         </form>
 
-        <p className="font-dm-sans font-medium text-base mt-4">Já tem uma conta? <a className="font-bold" href="/register">Faça seu login</a></p>
+        <p className="font-dm-sans font-medium text-base mt-4">Já tem uma conta? <a className="font-bold" href="/login">Faça seu login</a></p>
       </div>
 
     </div>

@@ -1,6 +1,7 @@
 import {ReactNode, createContext, useState, useEffect} from 'react';
+
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../services/firebaseConnection';
+import { auth} from '../services/firebaseConnection';
 
 interface IAuthProviderProps {
   children: ReactNode;
@@ -10,6 +11,7 @@ type AuthContextData = {
   signed: boolean;
   loadingAuth: boolean;
   user: IUserProps | null;
+  handleInfoUser: ({name, email, uid}: IUserProps) => void;
 }
 
 interface IUserProps {
@@ -25,7 +27,6 @@ function AuthProvider({ children }: IAuthProviderProps){
   const [loadingAuth, setLoadingAuth] = useState(true);
 
   useEffect(() => {
-
     const unsub = onAuthStateChanged(auth, (user) => {
       if(user){
         setUser({
@@ -45,8 +46,15 @@ function AuthProvider({ children }: IAuthProviderProps){
     return () => {
       unsub();
     }
-
   }, [])
+
+  function handleInfoUser({name, email, uid}: IUserProps){
+    setUser({
+      name,
+      email,
+      uid
+    })
+  }
 
   return(
     <AuthContext.Provider 
@@ -54,6 +62,7 @@ function AuthProvider({ children }: IAuthProviderProps){
         signed: !!user,
         loadingAuth,
         user,
+        handleInfoUser
       }}>
       {children}
     </AuthContext.Provider>
