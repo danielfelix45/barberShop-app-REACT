@@ -118,7 +118,7 @@ function New(){
     }
 
     await addDoc(collection(db, 'clients'), {
-      name: data.name,
+      name: data.name.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
       email: data.email,
       phone: data.phone,
       created: new Date(),
