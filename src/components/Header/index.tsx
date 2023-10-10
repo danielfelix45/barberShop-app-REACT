@@ -32,7 +32,7 @@ export function Header(){
             <Link className='w-full md:w-auto text-white text-sm md:text-xl font-dm-sans font-semibold tracking-wide border-b md:border-b-0 border-gray-800 pb-5 md:pb-0' to={'/clients'}>Lista de Clientes</Link>
             <Link className='w-full md:w-auto text-white text-sm md:text-xl font-dm-sans font-semibold tracking-wide border-b md:border-b-0 border-gray-800 pb-5 md:pb-0' to={'/clients/new'}>Cadastrar Cliente</Link>
 
-            <Link className='flex items-center justify-start p-1 border border-white rounded-full' to={'/'} onClick={handleLogout}>
+            <Link className='flex items-center justify-start p-2' to={'/'} onClick={handleLogout}>
               <FiLogOut size={28} color='#fff' />
             </Link>
           </div>
@@ -40,7 +40,7 @@ export function Header(){
         )}
 
         {!loadingAuth && !signed && (
-          <Link className='flex items-center justify-center p-1 border border-white rounded-full my-3' to={'/login'}>
+          <Link className='flex items-center justify-center p-2' to={'/login'}>
             <FiLogIn size={28} color='#fff'/>
           </Link>
         )}

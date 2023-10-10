@@ -116,8 +116,19 @@ function Home() {
             </table>
           </div>
         ) : (
-          <div className='text-center w-full bg-white py-5 rounded-lg font-poppins font-semibold text-xl mt-28'>
-            <p className=''>Não há clientes cadastrados...</p>
+          <div className='w-full shadow border rounded-lg overflow-hidden'>
+            <table className="w-full leading-normal">
+            <thead>
+                <tr>
+                  <th className=" px-4 py-2 border-b-2 border-gray-200 bg-gray-100 font-poppins font-semibold text-base md:text-lg text-left uppercase tracking-widest">Nome</th>
+                  <th className=" px-4 py-2 border-b-2 border-gray-200 bg-gray-100 font-poppins font-semibold text-base md:text-lg text-left uppercase tracking-widest">E-mail</th>
+                  <th className=" px-4 py-2 border-b-2 border-gray-200 bg-gray-100 font-poppins font-semibold text-base md:text-lg text-left uppercase tracking-widest">Telefone</th>
+                </tr>
+              </thead>
+            </table>
+            <div className='w-full py-4 bg-white text-center font-poppins font-semibold text-base md:text-lg'>
+              <p>Não há clientes cadastrados</p>
+            </div>
           </div>
         )}
       </div>
