@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import {useForm} from 'react-hook-form';
 import {z} from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
+import toast  from "react-hot-toast";
 
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../../services/firebaseConnection";
@@ -33,11 +34,11 @@ function Login() {
   function handleSubmit(data: FormData){
     signInWithEmailAndPassword(auth, data.email, data.password)
     .then(() => {
-      console.log("LOGADO COM SUCESSO!")
+      toast.success("Logado com sucesso!!")
       navigate("/clients", {replace: true})
     })
     .catch((error) => {
-      console.log("ERRO AO LOGAR!")
+      toast.error("Erro ao fazer login!")
       console.log(error)
     })
 
@@ -58,14 +59,14 @@ function Login() {
             placeholder="Digite seu e-mail..." 
             {...register('email')}
           />
-          {errors.email && <span className="m-1 text-red-600 text-base">{errors.email.message}</span>}
+          {errors.email && <span className="m-1 text-red-600 text-lg">{errors.email.message}</span>}
           <input 
             className="py-2 md:py-3 px-2 rounded outline-none mt-7 md:mt-10"
             type="password"
             placeholder="Digite sua senha..." 
             {...register('password')}
           />
-          {errors.password && <span className="m-1 text-red-600 text-base">{errors.password.message}</span>}
+          {errors.password && <span className="m-1 text-red-600 text-lg">{errors.password.message}</span>}
           <button className="bg-new-yellow mt-7 md:mt-10 py-2 md:py-3 px-2 rounded font-poppins font-bold text-base md:text-xl text-gray-500" type="submit">Acessar</button>
         </form>
 

@@ -4,6 +4,7 @@ import {useNavigate, useParams} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod/src/zod.js";
 import { z } from "zod";
+import toast from "react-hot-toast";
 
 import { AuthContext } from "../../../contexts/AuthContext";
 import { db } from "../../../services/firebaseConnection";
@@ -105,10 +106,12 @@ function New(){
       })
       .then(() => {
         reset();
+        toast.success('Cliente atualizado com sucesso!')
         navigate('/clients', {replace: true})
       })
       .catch((error) => {
         console.log(error)
+        toast.error("Erro ao atualizar os dados do cliente!")
       })
 
       return; 
@@ -124,11 +127,11 @@ function New(){
     })
     .then(() => {
       reset();
-      console.log("CLIENTE CADASTRADO COM SUCESSO!")
+      toast.success("Cliente cadastrado com sucesso!")
     })
     .catch((error) => {
       console.log(error);
-      console.log("ERRO AO CADASTRAR CLIENTE!")
+      toast.error("Erro ao cadastrar cliente!")
     })
   }
 

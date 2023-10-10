@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import {useForm} from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
 import {z} from 'zod';
+import toast from "react-hot-toast";
 
 import { auth } from "../../services/firebaseConnection";
 import { createUserWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
@@ -46,11 +47,11 @@ function Register() {
         uid: user.user.uid
       })
 
-      console.log("CADASTRADO COM SUCESSO!");
+      toast.success("Usuário cadastrado com sucesso!");
       navigate("/clients", {replace: true});
     })
     .catch((error) => {
-      console.log("ERRO AO CADASTRAR USUARIO!");
+      toast.error("Erro ao cadastrar usuário!");
       console.log(error);
     })
   }
@@ -66,27 +67,27 @@ function Register() {
         <h2 className="font-poppins font-semibold text-2xl md:text-3xl mb-5">Cadastro</h2>
         <form className="flex flex-col justify-center w-full md:max-w-xl px-2" onSubmit={handleSubmit(handleRegister)}>
           <input 
-            className="py-2 md:py-3 px-2 rounded outline-none"
+            className="py-2 md:py-3 px-2 rounded outline-none text-lg"
             type="text"
             placeholder="Digite seu nome..." 
             {...register('name')}
           />
-          {errors.name && <span className="m-1 text-red-600 text-base">{errors.name.message}</span>}
+          {errors.name && <span className="m-1 text-red-600 text-lg">{errors.name.message}</span>}
           <input 
-            className="py-2 md:py-3 px-2 rounded outline-none mt-7 md:mt-10"
+            className="py-2 md:py-3 px-2 rounded outline-none mt-7 text-lg"
             type="email"
             placeholder="Digite seu e-mail..." 
             {...register('email')}
           />
-          {errors.email && <span className="m-1 text-red-600 text-base">{errors.email.message}</span>}
+          {errors.email && <span className="m-1 text-red-600 text-lg">{errors.email.message}</span>}
           <input 
-            className="py-2 md:py-3 px-2 rounded outline-none mt-7 md:mt-10"
+            className="py-2 md:py-3 px-2 rounded outline-none mt-7 text-lg"
             type="password"
             placeholder="Digite uma senha..." 
             {...register('password')}
           />
-          {errors.password && <span className="m-1 text-red-600 text-base">{errors.password.message}</span>}
-          <button className="bg-new-yellow mt-7 md:mt-10 py-2 md:py-3 px-2 rounded font-poppins font-bold text-base md:text-xl text-gray-500" type="submit">Cadastrar</button>
+          {errors.password && <span className="m-1 text-red-600 text-lg">{errors.password.message}</span>}
+          <button className="bg-new-yellow mt-7 py-2 md:py-3 px-2 rounded font-poppins font-bold text-base md:text-xl text-gray-500" type="submit">Cadastrar</button>
         </form>
 
         <p className="font-dm-sans font-medium text-base mt-4">Já tem uma conta? <a className="font-bold" href="/login">Faça seu login</a></p>
