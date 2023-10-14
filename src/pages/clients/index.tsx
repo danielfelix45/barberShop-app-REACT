@@ -103,8 +103,6 @@ function Clients(){
   function previewPage(){
     if(currentPage !== firstIndex){
       setCurrentPage(currentPage - 1)
-    }else{
-      return;
     }
   }
 

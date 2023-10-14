@@ -88,8 +88,6 @@ function Home() {
   function previewPage(){
     if(currentPage !== firstIndex){
       setCurrentPage(currentPage - 1)
-    }else{
-      return;
     }
   }
 
@@ -172,18 +170,22 @@ function Home() {
           </div>
         )}
           <div className="flex bg-white rounded-lg font-[Poppins] mt-3 shadow-md shadow-gray-800">
-            <button onClick={previewPage} className="flex items-center  gap-1 h-12 border-2 border-r-0 border-gray-700 px-4 rounded-l-lg hover:bg-gray-500 hover:font-semibold">
-              <FiChevronsLeft size={22} color="#000" />
-            </button>
+            {currentPage !== 1 && ( 
+              <button onClick={previewPage} className="flex items-center  gap-1 h-12 border-2 border-r-0 border-gray-700 px-4 rounded-l-lg hover:bg-black hover:text-new-yellow hover:font-semibold">
+              <FiChevronsLeft size={22} />
+              </button>
+            )}
             {
                 numbers.map((page, index) => (
                   <button key={index} onClick={() => setCurrentPage(page)} className={`h-12 border-2 border-r-0 border-gray-700
-                  w-12 ${currentPage === page && 'bg-gray-500 text-black font-semibold'}`}>{page}</button>
+                  w-12 ${currentPage === page && 'bg-black text-new-yellow font-semibold'}`}>{page}</button>
                 ))
             }
-            <button onClick={nextPage} className="flex items-center gap-1 h-12 border-2 border-gray-700 px-4 rounded-r-lg hover:bg-gray-500 hover:font-semibold">
-              <FiChevronsRight size={22} color="#000" />
-            </button>
+            {currentPage < numbers.length && (
+              <button onClick={nextPage} className="flex items-center gap-1 h-12 border-2 border-gray-700 px-4 rounded-r-lg hover:bg-black hover:text-new-yellow hover:font-semibold">
+              <FiChevronsRight size={22} />
+              </button>
+            )}
           </div>
       </div>
     </div>
