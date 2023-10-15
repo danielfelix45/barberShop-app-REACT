@@ -1,7 +1,7 @@
 # BarberShop App - REACT
 
 <div align="center">
-<img src="https://github.com/danielfelix45/barberShop-app-REACT/assets/81331726/7fd5a378-4e19-42fc-ae54-1c4372f854e4" width="350px" />
+<img src="https://github.com/danielfelix45/barberShop-app-REACT/assets/81331726/b1021a34-177b-4944-9a9e-fb64348320fe" width="350px" />
 <img src="https://github.com/danielfelix45/barberShop-app-REACT/assets/81331726/72f83002-7dc4-4d8d-a2c1-8ac08be9c62e" width="350px" />
 <img src="https://github.com/danielfelix45/barberShop-app-REACT/assets/81331726/ecb73239-d094-4471-b255-7e591571da7b" width="350px" />
 <img src="https://github.com/danielfelix45/barberShop-app-REACT/assets/81331726/a01d155f-c482-4300-b495-84127c83ccf2" width="350px" />
