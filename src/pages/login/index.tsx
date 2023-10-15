@@ -46,11 +46,11 @@ function Login() {
 
   return (
     <div className="flex flex-col items-center w-full h-screen bg-black px-2">
-      <div className="flex items-center text-white text-4xl md:text-7xl font-bold font-poppins mt-12 md:mt-24">
+      <div className="flex items-center text-white text-4xl md:text-7xl font-bold font-poppins mt-12 md:mt-20">
         <Link to={'/'}>Barber<span className="text-new-yellow">Shop</span>.</Link>
       </div>
 
-      <div className="flex flex-col items-center justify-center w-full max-w-xl md:max-w-3xl mx-auto bg-gray-500 mt-20 md:mt-32 py-6 md:py-12 rounded">
+      <div className="flex flex-col items-center justify-center w-full max-w-xl md:max-w-3xl mx-auto bg-gray-500 mt-20 md:mt-28 py-6 md:py-12 rounded">
         <h2 className="font-poppins font-semibold text-2xl md:text-3xl mb-5">Login</h2>
         <form className="flex flex-col justify-center w-full md:max-w-xl px-2" onSubmit={onSubmit(handleSubmit)}>
           <input 

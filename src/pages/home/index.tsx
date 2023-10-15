@@ -109,13 +109,13 @@ function Home() {
 
         <div className='flex w-full items-center justify-center md:justify-end mb-8'>
           <input 
-            className='px-2 py-2 rounded w-72 outline-none shadow-md shadow-gray-800' 
+            className='pl-2 py-2 rounded w-72 outline-none shadow-md shadow-gray-800' 
             type="text" 
             placeholder='Procurar...'
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
-          <button onClick={handleSearchClient} className='absolute -mr-60 md:mr-2 cursor-pointer'>
+          <button onClick={handleSearchClient} className='absolute -mr-60 md:mr-5 cursor-pointer'>
             <FiSearch size={25} color='#999' />
           </button>
         </div>

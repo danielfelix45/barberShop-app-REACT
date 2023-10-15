@@ -138,31 +138,31 @@ function New(){
   return(
     <div className="w-full bg-gray-500 px-2">
       <div className="flex flex-col items-center md:items-start w-full max-w-6xl mx-auto h-screen md:pt-28">
-        <h2 className="mt-28 md:mt-28 mb-14 md:mb-20 font-poppins font-semibold text-2xl md:text-4xl">{id ? "Editar CLiente" : "Novo Cliente"}</h2>
+        <h2 className="mt-24 mb-14 md:mb-20 font-poppins font-semibold text-2xl md:text-4xl">{id ? "Editar CLiente" : "Novo Cliente"}</h2>
         <form className="flex flex-col w-full max-w-xl" onSubmit={handleSubmit(handleRegister)}>
           <input 
-            className="py-3 px-2 rounded outline-none"
+            className="py-2 md:py-3 px-2 rounded outline-none"
             type="text"
             placeholder="Digite o nome do cliente..." 
             {...register("name")}
           />
-          {errors.name && <span className="m-1 text-red-600 text-lg">{errors.name.message}</span>}
+          {errors.name && <span className="mt-1 text-red-600 text-lg">{errors.name.message}</span>}
           <input 
-            className="py-3 px-2 rounded outline-none mt-10"
+            className="py-2 md:py-3 px-2 rounded outline-none mt-5 md:mt-10"
             type="email"
             placeholder="Digite o e-mail do cliente..." 
             {...register('email')}
           />
-          {errors.email && <span className="m-1 text-red-600 text-lg">{errors.email.message}</span>}
+          {errors.email && <span className="mt-1 text-red-600 text-lg">{errors.email.message}</span>}
           <input 
-            className="py-3 px-2 rounded outline-none mt-10"
+            className="py-2 md:py-3 px-2 rounded outline-none mt-5 md:mt-10"
             type="tel"
             placeholder="Digite o telefone do cliente..." 
             {...register('phone')}
           />
-          {errors.phone && <span className="m-1 text-red-600 text-lg">{errors.phone.message}</span>}
+          {errors.phone && <span className="mt-1 text-red-600 text-lg">{errors.phone.message}</span>}
 
-          <button type="submit" className="bg-new-yellow py-3 px-2 mt-10 rounded font-poppins font-bold text-xl text-gray-500">{id ? "Atualizar" : "Cadastrar"}</button>
+          <button type="submit" className="bg-new-yellow py-2 md:py-3 px-2 mt-10 md:mt-12 rounded font-poppins font-bold text-xl text-gray-500">{id ? "Atualizar" : "Cadastrar"}</button>
         </form>
       </div>
 

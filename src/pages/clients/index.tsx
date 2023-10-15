@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { FiSearch, FiTrash2, FiEdit, FiChevronsLeft, FiChevronsRight } from "react-icons/fi";
 
-import {collection, getDocs, where, query, doc, deleteDoc} from 'firebase/firestore';
+import {collection, getDocs, where, query, doc, deleteDoc, orderBy} from 'firebase/firestore';
 import { db } from '../../services/firebaseConnection';
 import { AuthContext } from '../../contexts/AuthContext';
 
@@ -130,7 +130,7 @@ function Clients(){
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
-          <button onClick={handleSearchClient} className='absolute -mr-60 md:mr-2 cursor-pointer'>
+          <button onClick={handleSearchClient} className='absolute -mr-60 md:mr-4 cursor-pointer'>
             <FiSearch size={25} color='#999' />
           </button>
         </div>
@@ -197,18 +197,22 @@ function Clients(){
             </div>
           )}
             <div className="flex bg-white rounded-lg font-[Poppins] mt-3 shadow-md shadow-gray-800">
-              <button onClick={previewPage} className="flex items-center  gap-1 h-12 border-2 border-r-0 border-gray-700 px-4 rounded-l-lg hover:bg-gray-500 hover:font-semibold">
-                <FiChevronsLeft size={22} color="#000" />
-              </button>
+              {currentPage !== 1 && ( 
+                <button onClick={previewPage} className="flex items-center  gap-1 h-12 border-2 border-r-0 border-gray-700 px-4 rounded-l-lg hover:bg-black hover:text-new-yellow hover:font-semibold">
+                <FiChevronsLeft size={22} />
+                </button>
+              )}
               {
                   numbers.map((page, index) => (
                     <button key={index} onClick={() => setCurrentPage(page)} className={`h-12 border-2 border-r-0 border-gray-700
-                    w-12 ${currentPage === page && 'bg-gray-500 text-black font-semibold'}`}>{page}</button>
+                    w-12 ${currentPage === page && 'bg-black text-new-yellow font-semibold'}`}>{page}</button>
                   ))
               }
-              <button onClick={nextPage} className="flex items-center gap-1 h-12 border-2 border-gray-700 px-4 rounded-r-lg hover:bg-gray-500 hover:font-semibold">
-                <FiChevronsRight size={22} color="#000" />
-              </button>
+              {currentPage < numbers.length && (
+                <button onClick={nextPage} className="flex items-center gap-1 h-12 border-2 border-gray-700 px-4 rounded-r-lg hover:bg-black hover:text-new-yellow hover:font-semibold">
+                <FiChevronsRight size={22} />
+                </button>
+              )}
             </div>
       </div>
     </div>
