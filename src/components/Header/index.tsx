@@ -8,7 +8,7 @@ import {FiLogIn, FiLogOut, FiMenu} from 'react-icons/fi';
 
 export function Header(){
   const {signed, loadingAuth} = useContext(AuthContext);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   async function handleLogout(){
     await signOut(auth);
@@ -19,24 +19,22 @@ export function Header(){
   }
 
   return(
-    <div className="flex fixed z-10 justify-center w-full bg-black md:h-28">
-      <header className="flex justify-between w-full max-w-7xl mx-auto p-4 md:p-0 md:py-8">
-        
+    <header className="flex fixed z-10 justify-center w-full bg-black md:h-28">
+      <div className="flex justify-between w-full max-w-7xl mx-auto p-4 md:p-0 md:py-8">
         <Link className="flex items-center text-white text-3xl md:text-4xl font-bold font-poppins" to={'/'}>
           Barber<span className="text-new-yellow">Shop</span>.
         </Link>
         
-        <nav className={`flex items-center bg-black md:static absolute min-h[45vh] left-0 ${isOpen ? 'top-[-420%]' : 'top-[100%]'} md:w-auto w-full px-5 border-t md:border-t-0 border-gray-800 drop-shadow-sm md:drop-shadow-none`}>
+        <nav className={`flex items-center bg-black md:static absolute min-h[45vh] left-0 ${isOpen ? 'top-[100%] transition-all duration-300 delay-75' : 'top-[-420%] transition-all duration-500 delay-75'} md:w-auto w-full px-5 border-t md:border-t-0 border-gray-800 drop-shadow-sm md:drop-shadow-none`}>
         {!loadingAuth && signed && (
           <div className='w-full flex flex-col md:flex-row items-center gap-5 md:gap-20 py-5'>
-            <Link className='w-full md:w-auto text-white text-sm md:text-xl font-dm-sans font-semibold tracking-wide border-b md:border-b-0 border-gray-800 pb-5 md:pb-0' to={'/clients'}>Lista de Clientes</Link>
-            <Link className='w-full md:w-auto text-white text-sm md:text-xl font-dm-sans font-semibold tracking-wide border-b md:border-b-0 border-gray-800 pb-5 md:pb-0' to={'/clients/new'}>Cadastrar Cliente</Link>
+            <Link className='w-full md:w-auto text-white text-sm md:text-xl font-dm-sans font-semibold tracking-wide border-b md:border-b-0 border-gray-800 pb-5 md:pb-0' to={'/clients'} onClick={toggleMenu}>Lista de Clientes</Link>
+            <Link className='w-full md:w-auto text-white text-sm md:text-xl font-dm-sans font-semibold tracking-wide border-b md:border-b-0 border-gray-800 pb-5 md:pb-0' to={'/clients/new'} onClick={toggleMenu}>Cadastrar Cliente</Link>
 
             <Link className='flex items-center justify-start p-2' to={'/'} onClick={handleLogout}>
               <FiLogOut size={28} color='#fff' />
             </Link>
-          </div>
-          
+          </div>          
         )}
 
         {!loadingAuth && !signed && (
@@ -49,7 +47,7 @@ export function Header(){
         <button onClick={toggleMenu} className='md:hidden'>
           <FiMenu size={28} color="#fff" />
         </button>
-      </header>
-    </div>
+      </div>
+    </header>
   )
 }

@@ -137,7 +137,7 @@ function New(){
 
   return(
     <div className="w-full bg-gray-500 px-2">
-      <div className="flex flex-col items-center md:items-start w-full max-w-6xl mx-auto h-screen md:pt-28">
+      <div className="flex flex-col items-center md:items-start w-full max-w-7xl mx-auto h-screen md:pt-28">
         <h2 className="mt-24 mb-14 md:mb-20 font-poppins font-semibold text-2xl md:text-4xl">{id ? "Editar CLiente" : "Novo Cliente"}</h2>
         <form className="flex flex-col w-full max-w-xl" onSubmit={handleSubmit(handleRegister)}>
           <input 
